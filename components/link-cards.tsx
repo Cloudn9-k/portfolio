@@ -8,8 +8,8 @@ import { MailIcon } from '@/components/icons/mail';
 // import { LinkedinIcon } from './icons/linkedin';
 
 const links = [
-  { href: 'https://github.com/akshay-abraham/', title: 'GitHub', Icon: GithubIcon },
-  { href: 'mailto:akshaykroobenabraham@gmail.com', title: 'Mail', Icon: MailIcon },
+  { href: 'https://github.com/Cloudn9-k', title: 'GitHub', Icon: GithubIcon },
+  { href: 'Tongankhang0407@gmail.com', title: 'Mail', Icon: MailIcon },
 ];
 
 export default function LinkCards() {

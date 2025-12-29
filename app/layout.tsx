@@ -6,7 +6,10 @@ import MainNav from '@/components/main-nav';
 import GlobalPetRenderer from '@/components/global-pet-renderer';
 import { Analytics } from '@vercel/analytics/react';
 import GuidedTour from '@/components/guided-tour';
-
+import { Space_Grotesk, Lobster, Orbitron } from "next/font/google";
+const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-space" });
+const lobster = Lobster({ weight: "400", subsets: ["latin"], variable: "--font-lobster" });
+const orbitron = Orbitron({ subsets: ["latin"], variable: "--font-orbitron" });
 export const metadata: Metadata = {
   title: 'Tong An Khang | Portfolio',
   description: 'The personal portfolio of Tong An Khang, a Software Development student at FPT Polytechnic.',
@@ -20,7 +23,6 @@ export const metadata: Metadata = {
     'Software Developer'
   ],
 };
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -28,12 +30,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Lobster&display=swap" rel="stylesheet" />
-      </head>
-      <body className="font-body antialiased">
+      <body className={`${spaceGrotesk.variable} ${lobster.variable} ${orbitron.variable} font-body antialiased`}>
           <AnimatedBackground />
           <GlobalPetRenderer />
           <div id="pet-container"></div>

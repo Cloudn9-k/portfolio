@@ -150,15 +150,16 @@ export default function GuidedTour() {
     }
   }, []);
 
-  useEffect(() => {
+ useEffect(() => {
     const gameContainer = document.getElementById('quantum-conundrum-section');
     if (!gameContainer) return;
-    
     const observer = new MutationObserver(mutations => {
       for (let mutation of mutations) {
         if (mutation.attributeName === 'class') {
           const target = mutation.target as HTMLElement;
-          setIsGameActive(target.classList.contains('fixed'));
+          setTimeout(() => {
+             setIsGameActive(target.classList.contains('fixed'));
+          }, 0);
         }
       }
     });

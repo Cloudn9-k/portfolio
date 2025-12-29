@@ -241,7 +241,8 @@ export default function EasterEgg() {
   return (
     <>
       {isGameActive && (
-        <div className="fixed inset-0 z-40" onClick={reset}></div>
+      
+        <div className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm" onClick={reset}></div>
       )}
       <section
         id="quantum-conundrum-section" 
@@ -255,15 +256,16 @@ export default function EasterEgg() {
       >
          <Card className={cn(
               "group relative border-border/40 shadow-lg transition-all duration-700 ease-out text-center overflow-hidden w-full",
-              isVisible && !isGameActive ? "opacity-100 translate-y-0 bg-card/30" : !isGameActive ? "opacity-0 translate-y-5" : "",
-              isGameActive ? "max-w-3xl h-auto md:h-[550px] flex flex-col bg-background" : "max-w-full"
+             
+              isVisible && !isGameActive ? "opacity-100 translate-y-0 bg-card/60 backdrop-blur-md hover:bg-card/70" : !isGameActive ? "opacity-0 translate-y-5" : "",
+              isGameActive ? "max-w-3xl h-auto md:h-[550px] flex flex-col bg-background/90 backdrop-blur-xl border-primary/50 shadow-2xl scale-100" : "max-w-full"
           )}
           style={{ transitionDelay: isVisible ? `200ms` : '0ms' }}
           >
               {gameState === 'idle' && <div className="animate-border-glow"></div>}
 
               {isGameActive && (
-                <Button variant="ghost" size="icon" className="absolute top-2 right-2 z-20" onClick={reset}>
+                <Button variant="ghost" size="icon" className="absolute top-2 right-2 z-20 hover:bg-white/20" onClick={reset}>
                   <X className="h-5 w-5" />
                   <span className="sr-only">Close Game</span>
                 </Button>
