@@ -27,7 +27,7 @@ const PagePet = ({ type, startX, startY }: PetState) => {
   const ghostStateTimeout = useRef<NodeJS.Timeout | null>(null);
   const mousePos = useRef({ x: 0, y: 0 });
   const petRef = useRef<HTMLDivElement>(null);
-  const animationFrameId = useRef<number>();
+  const animationFrameId = useRef<number | null>(null);
 
   useEffect(() => {
     setIsMounted(true);
