@@ -205,7 +205,7 @@ const PagePet = ({ type, startX, startY }: PetState) => {
   const initialRandomX = Math.random() * (window.innerWidth - 100) + 50;
   const initialRandomY = Math.random() * (window.innerHeight - 100) + 50;
   
-  const style: React.CSSProperties = isAnimatingIn
+ const style: React.CSSProperties = isAnimatingIn
     ? {
         position: 'fixed',
         width: '48px',
@@ -218,7 +218,7 @@ const PagePet = ({ type, startX, startY }: PetState) => {
         '--final-y': `${initialRandomY}px`,
         top: 0,
         left: 0,
-      }
+      } as React.CSSProperties // <--- QUAN TRỌNG: Ép kiểu ở đây
     : {
         position: 'fixed',
         width: '48px',
@@ -230,7 +230,7 @@ const PagePet = ({ type, startX, startY }: PetState) => {
         transform: `translate(${position.x}px, ${position.y}px) scale(1.2) rotate(${velocity.vx * 10}deg)`,
         transition: 'opacity 0.75s ease-in-out',
         opacity: isVisible ? 1 : 0,
-      };
+      } as React.CSSProperties; // <--- VÀ Ở ĐÂY NỮA
 
   const handlePetInteraction = () => {
     if (type === 'alive') {

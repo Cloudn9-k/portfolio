@@ -4,10 +4,12 @@ import React, { useRef } from 'react';
 import type { LucideIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
-interface LinkCardProps {
+// Định nghĩa kiểu dữ liệu cho props
+export interface LinkCardProps {
   href: string;
   title: string;
-  Icon: LucideIcon;
+  // Icon chấp nhận cả LucideIcon và Component SVG tùy chỉnh
+  Icon: LucideIcon | React.ComponentType<any> | React.ElementType;
   delay: number; 
   isVisible: boolean; 
 }
@@ -56,7 +58,7 @@ export default function LinkCard({ href, title, Icon, delay, isVisible }: LinkCa
       onMouseLeave={handleMouseLeave}
     >
       <Icon className="absolute left-4 h-6 w-6 text-foreground/60 transition-colors group-hover:text-primary" />
-      <span className="font-medium text-foreground transition-colors group-hover:text-primary">
+      <span className="font-medium text-foreground transition-colors group-hover:text-primary font-orbitron tracking-wide text-sm">
         {title}
       </span>
     </a>

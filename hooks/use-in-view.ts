@@ -7,40 +7,44 @@
 "use client"
 
 import { useState, useEffect, RefObject } from 'react';
+interface UseInViewOptions extends IntersectionObserverInit {
+  once?: boolean;
+}
 
 /**
  * A custom hook to track if a referenced element is in the viewport.
  * @param {RefObject<Element>} ref - A React ref attached to the element to observe.
- * @param {IntersectionObserverInit} [options] - Optional configuration for the Intersection Observer.
+ * @param {UseInViewOptions} [options] - Configuration including threshold, rootMargin, and 'once'.
  * @returns {boolean} `true` if the element is in view, otherwise `false`.
  */
-export function useInView(ref: RefObject<Element | null>, options?: IntersectionObserverInit): boolean {
+export function useInView(ref: RefObject<Element | null>, options?: UseInViewOptions): boolean {
   const [isInView, setIsInView] = useState(false);
 
   useEffect(() => {
-    // Copy ref.current to a variable to ensure cleanup works correctly
-    // even if ref.current changes or becomes null later.
     const element = ref.current;
-
     if (!element) return;
 
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
         setIsInView(true);
-        // Unobserve immediately after it becomes visible (trigger once)
-        observer.unobserve(element);
+        if (options?.once) {
+          observer.unobserve(element);
+        }
+      } else {
+        if (!options?.once) {
+           setIsInView(false);
+        }
       }
     }, options);
 
     observer.observe(element);
 
     return () => {
-      // Cleanup using the captured variable
       if (element) {
         observer.unobserve(element);
       }
     };
-  }, [ref, options]);
+  }, [ref, options]); 
 
   return isInView;
 }
