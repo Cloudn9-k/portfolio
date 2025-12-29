@@ -17,7 +17,7 @@ export const projects: Project[] = [
     isFeatured: true, 
   },
   {
-    title: 'PTPM Workshop Product Showcase',
+    title: 'PTPM Product Showcase',
     description:
       'A centralized portfolio platform (Showcase) to manage and display Web/App products developed by the PTPM Workshop. Built with RESTful APIs, Spring Security (OAuth2/JWT), and bulk data import via Excel.',
     githubUrl: 'https://github.com/FPLHN-FACTORY/FPL-UDPM-Catalog',

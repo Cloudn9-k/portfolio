@@ -23,9 +23,14 @@ interface ProjectsProps {
 export default function Projects({ featuredOnly = false }: ProjectsProps) {
   const ref = useRef<HTMLDivElement>(null);
   const isVisible = useInView(ref);
-  const projectsToShow = featuredOnly
+  
+  let projectsToShow = featuredOnly
     ? projects.filter((p) => p.isFeatured)
     : projects;
+
+  if (featuredOnly) {
+    projectsToShow = projectsToShow.slice(0, 2);
+  }
 
   return (
     <section
@@ -41,20 +46,21 @@ export default function Projects({ featuredOnly = false }: ProjectsProps) {
       {featuredOnly && (
         <h2
           className={cn(
-            'text-2xl font-bold text-primary tracking-tight text-center transition-all duration-700',
+
+            'text-2xl font-bold text-primary tracking-tight text-center transition-all duration-700 font-orbitron',
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           )}
         >
-          Featured Projects
+          FEATURED PROJECTS
         </h2>
       )}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
         {projectsToShow.map((project, index) => (
           <Card
             key={project.title}
             className={cn(
-              'group relative overflow-hidden bg-card/30 border-border/40 shadow-lg transition-all duration-700 ease-out text-left',
+              'group relative overflow-hidden bg-card/30 border-border/40 shadow-lg transition-all duration-700 ease-out text-left flex flex-col h-full', // Thêm flex flex-col h-full
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
             )}
             style={{
@@ -62,18 +68,23 @@ export default function Projects({ featuredOnly = false }: ProjectsProps) {
             }}
           >
             <div className="animate-border-glow"></div>
-            <div className="relative z-10 p-2">
-              <CardHeader>
-                <CardTitle className="text-xl text-primary">{project.title}</CardTitle>
-                <CardDescription className="text-foreground/80 pt-1">
+            <div className="relative z-10 p-2 flex flex-col h-full"> 
+              <CardHeader className="flex-grow">
+                <CardTitle className="text-xl text-primary font-orbitron tracking-wide">
+                    {project.title}
+                </CardTitle>
+                <CardDescription className="text-foreground/80 pt-2 leading-relaxed">
                   {project.description}
                 </CardDescription>
               </CardHeader>
-              <CardFooter className="flex justify-between items-center">
-                <Badge variant="secondary" className="bg-background/50">{project.license}</Badge>
+              
+              <CardFooter className="flex justify-between items-center mt-auto pt-4 border-t border-border/20">
+                <Badge variant="secondary" className="bg-primary/10 text-primary hover:bg-primary/20 transition-colors">
+                    {project.license}
+                </Badge>
                 <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                  <Button variant="ghost">
-                    <Github className="mr-2 h-4 w-4" />
+                  <Button variant="ghost" size="sm" className="group/btn">
+                    <Github className="mr-2 h-4 w-4 transition-transform group-hover/btn:scale-110" />
                     View on GitHub
                   </Button>
                 </a>
@@ -86,14 +97,14 @@ export default function Projects({ featuredOnly = false }: ProjectsProps) {
       {featuredOnly && (
         <div 
           className={cn(
-            "text-center transition-all duration-700",
+            "text-center transition-all duration-700 pt-4",
              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
           )}
           style={{ transitionDelay: '500ms'}}
         >
           <Link href="/projects">
-            <Button variant="outline" className="bg-card/30 border-border/40">
-              See More Projects
+            <Button variant="outline" className="bg-card/30 border-border/40 font-orbitron text-xs tracking-widest hover:bg-primary/10">
+              EXPLORE ALL PROJECTS
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </Link>

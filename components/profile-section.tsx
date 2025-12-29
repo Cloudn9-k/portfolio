@@ -40,7 +40,7 @@ export default function ProfileSection() {
             </h1>
         </div>
         <p className="text-sm md:text-base text-foreground/70 mt-1 text-shadow max-w-md mx-auto">
-          Software Development Student · Full Stack Developer · Tech Enthusiast
+          Software Development Student · Full Stack Developer
         </p>
         <p className="text-xs text-foreground/50 mt-2">
            Born in 2007 · FPT Polytechnic College
